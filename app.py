@@ -14,7 +14,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-
+#main page , which shows upload option and submit, loads image from dir
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -42,7 +42,8 @@ def upload_file():
     '''
 
 
-
+#takes filename from upload_file fn and checks if there is a face, if yes , 
+#runs it through the model and predicts whether it is bloody or not.
 
 @app.route('/<filename>')
 def uploaded_file(filename):
