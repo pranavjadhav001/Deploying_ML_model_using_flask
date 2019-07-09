@@ -7,8 +7,10 @@ from keras.models import load_model
 import dlib
 import tensorflow as tf
 
+#load the classification model
 model = load_model('blood.hdf5')
 model._make_predict_function()
+#preprocessing fn for input image before feeding in the model
 def preprocess_input(x, dim_ordering='default'):
     if dim_ordering == 'default':
         dim_ordering = K.image_dim_ordering()
@@ -27,7 +29,7 @@ def preprocess_input(x, dim_ordering='default'):
         # 'RGB'->'BGR'
         #x = x[:, :, :, ::-1]
     return x
-
+#finds all faces in the input image , crops and returns each one individually
 def facer(image):
     cropped_blood = []    
     face_detector = dlib.get_frontal_face_detector()
@@ -43,7 +45,7 @@ def facer(image):
         return None
     
                 
-        
+#take image path and returns faces and their corresponding label i.e. bloody or no_bloody
     
 def prediction(image_path,model_path='blood.hdf5'):
     image = cv2.imread(image_path)
