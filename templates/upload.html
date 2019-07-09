@@ -1,0 +1,20 @@
+<!DOCTYPE=html>
+<html>
+<head>
+    <title>
+        All faces
+    </title>
+</head>
+<body>
+    
+    {% for img,score in data.items() %}
+    <p>
+    <img src="{{ url_for('static',filename=img)}}" alt="{{img}}">
+    <b>{{score}}</b>
+	</p>
+    {% endfor %}
+    <form>
+    <input type="button" value="Go back!" onclick="history.back()">
+    </form>
+</body>
+</html>
